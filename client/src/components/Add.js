@@ -6,6 +6,16 @@ import ipfsHash from '../artifacts/contracts/Storage.sol/Storage.json'
 import axios from 'axios'
 
 
+const provide = new ethers.providers.JsonRpcProvider('http://192.168.0.186:8545');
+
+const privateKey = '0x3e3423ef6c78e6e2e507c340f68d487db1aa41d5f3dcbdd0789e14f84e344b2f';
+let wallet ;
+
+let contractAddress ;
+
+let cnt ;
+
+
 function App() {
 
     const [account, setAccount] = useState("")
@@ -31,6 +41,13 @@ const initConnection = async () => {
         } else {
         console.log("Please install MetaMask");
         }
+
+
+        wallet = new ethers.Wallet(privateKey, provide);
+
+     contractAddress = '0x0d8cc4b8d15D4c3eF1d70af0071376fb26B5669b';
+
+     cnt = new ethers.Contract(contractAddress, ipfsHash.abi, wallet);
     }
 
     
@@ -43,20 +60,20 @@ const initConnection = async () => {
 
 
 const getStudents = async () => {
-    const transaction = await contractIPFS.getStudents();
+    const transaction = await cnt.getStudents();
     console.log(transaction);
     setStudentData(transaction);
 }
 
 const addNewStudent = async (_apogee, _name, _email, _diplome) => {
-    const transaction = await contractIPFS.createStudent(_apogee, _name, _email, _diplome);
+    const transaction = await cnt.createStudent(_apogee, _name, _email, _diplome);
     await transaction.wait();
     console.log(transaction)
     getStudents()
 }
 
 const deleteLastStudent = async () => {
-    const transaction = await contractIPFS.deleteLastStudent();
+    const transaction = await cnt.deleteLastStudent();
     await transaction.wait();
     getStudents()
 }
