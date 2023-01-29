@@ -1,0 +1,19 @@
+.div1{
+    color: #285694;
+    width:800px; 
+    height:605px; 
+    padding:20px; 
+    margin: auto; 
+    border: 10px solid #787878;
+}
+.div2{
+    width:750px; 
+    height:550px; 
+    padding:20px; 
+    text-align:center; 
+    border: 5px solid #787878;
+}
+.img{
+    height: 80px; 
+    margin-bottom: 20px;
+}
