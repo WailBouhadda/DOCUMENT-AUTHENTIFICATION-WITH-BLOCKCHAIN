@@ -17,7 +17,7 @@ let isInitialzed = false;
 
 export const init = async () => {
 
-    const contractAdrees = "0xB9B7e0cb2EDF5Ea031C8B297A5A1Fa20379b6A0a";
+    const contractAdrees = "0x9F544a3Fc3D1045e6ec49D4ecEF6dCD700457165";
     
      wallet = new ethers.Wallet(privateKey, provide);
      cnt = new ethers.Contract(contractAdrees, contractAbi, wallet);

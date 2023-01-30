@@ -5,6 +5,7 @@ import { ethers } from 'ethers'
 import ipfsHash from '../artifacts/contracts/Storage.sol/Storage.json'
 import axios from 'axios'
 import { creatDiplome, getDiplomes, deleteLastDiplome } from './diplomeService';
+import Diplomes from './showDiplomes/Diplomes';
 
 
 
@@ -61,18 +62,10 @@ const initConnection = async () => {
 //---------------------------------------------------------------------------------------------------------------
 
 
-const diplomes = async () => {
-    const transaction = await getDiplomes();
-    setStudentData(transaction);
-    console.log("this is from BC")
-    console.log(transaction[0])
-}
-
 
 const deletDiplome = async () => {
     const transaction = await deleteLastDiplome();
     await transaction.wait();
-    diplomes()
 }
 
 
@@ -121,41 +114,54 @@ const saveData = () => {
     }
 }
 
-
-
-
-
+const [show, setShow] = useState(false);
+const [add, setAdd] = useState(false);
+const [update, setUpdate] = useState(false);
 
     return (
         <div className="App">
-        <br/><br/>
-        <div>
-        {account !== "" ? <p>Account Address : {account}</p> : <button className="big-button" onClick={() => initConnection()}>Connect</button>}
-        </div>
-        <h1>Add a File</h1>
-        <div>
+            <div className='mb-5'>
+                <nav className='navbar bg-dark shadow-lg'>
+                    <div className='container-fluid'>
+                        <a className='navbar-brand text-light' href="#">
+                            Document Authentification
+                        </a>
+                        <div className='d-flex flex-row-reverse'>
+                            <button type="button" className='btn btn-light mx-1' onClick={() => {setShow(!show); setAdd(false);setUpdate(false) }}>Show Diplomes</button>
+                            <button type="button" className='btn btn-light mx-1' onClick={() => {setAdd(!add); setShow(false);setUpdate(false) }}>Add Diplomes</button>
+                            <button type="button" className='btn btn-light mx-1' onClick={() => {setUpdate(!update); setAdd(false);show(false) }}>Update Diplome</button>
+                        </div>
+                    </div>
+                </nav>
+                <section className='jumpotron text-center p-5'>
+                    <h1>Blockchain Document Authentification</h1>
+                </section>
+            </div>
+            <div>
+            {show && 
+                <Diplomes
+                    studentData={studentData}
+                    setStudentData={setStudentData}
+                />
+            }
+            </div>
+            {add && 
+                <div>
+                    <h1>Add a File</h1>
+                    <br/><br/>
+                    <input
+                            type="file"
+                            onInput={(e) => handleFile(e)}
+                    />
+                    <div>
+                    <br/><br/>
+                        <button onClick={() => saveData()}>Save Data to Smart Contract</button>
+                    </div>
 
-            <input
-                    type="file"
-                    onInput={(e) => handleFile(e)}
-            />
+                </div>
 
-        </div>
-
+            }
         
-        <br/><br/>
-        <hr/>
-        <br/><br/>
-
-        
-        <div>
-            <button onClick={() => diplomes()}>Get Data from Smart Contract</button>
-        </div>
-        <br/>
-        <div>
-            <button onClick={() => saveData()}>Save Data to Smart Contract</button>
-        </div>
-        <br/>
         <div>
             <button onClick={() => deletDiplome()}>Delete Last Entry</button>
         </div>

@@ -18,7 +18,7 @@ let isInitialzed = false;
 
 export const init = async () => {
 
-    const contractAdrees = "0xB9B7e0cb2EDF5Ea031C8B297A5A1Fa20379b6A0a";
+    const contractAdrees = "0xcfeD223fAb2A41b5a5a5F9AaAe2D1e882cb6Fe2D";
     
      wallet = new ethers.Wallet(privateKey, provide);
      cnt = new ethers.Contract(contractAdrees, contractAbi, wallet);
@@ -34,14 +34,9 @@ export const creatDiplome = async (diplome) => {
     if(!isInitialzed){
         await init();
       }
-     cnt.createDiplome(diplome)
-      .then(transaction => {
-        console.log(transaction);
-        return transaction;
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    const transaction = await cnt.createDiplome(diplome);
+    await transaction.wait();
+    return transaction;
 }
 
 export const getDiplomes = async () => {
@@ -50,6 +45,15 @@ export const getDiplomes = async () => {
         await init();
       }
       const transaction = await cnt.getDiplomes();
+      return transaction
+}
+
+export const filterDiplomes = async (date) => {
+
+    if(!isInitialzed){
+        await init();
+      }
+      const transaction = await cnt.filterDiplomes(date);
       return transaction
 }
 

@@ -110,6 +110,87 @@
 		"inputs": [
 			{
 				"internalType": "string",
+				"name": "_dip",
+				"type": "string"
+			}
+		],
+		"name": "filterDiplomes",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "CNE",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "CNI",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "firstName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "lastName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "birthDate",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "birthPlace",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "universityName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "diplomeTitle",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "brancheName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "brancheOption",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "note",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "date",
+						"type": "string"
+					}
+				],
+				"internalType": "struct Storage.Diplome[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
 				"name": "_CNE",
 				"type": "string"
 			}
