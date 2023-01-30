@@ -4,6 +4,8 @@ import * as XLSX from 'xlsx';
 import { ethers } from 'ethers'
 import ipfsHash from '../artifacts/contracts/Storage.sol/Storage.json'
 import axios from 'axios'
+import { creatDiplome, getDiplomes, deleteLastDiplome } from './diplomeService';
+
 
 
 const provide = new ethers.providers.JsonRpcProvider('http://192.168.0.186:8545');
@@ -34,7 +36,7 @@ const initConnection = async () => {
         setContractIPFS(
             new ethers.Contract(
             "0x0d8cc4b8d15D4c3eF1d70af0071376fb26B5669b",
-            ipfsHash.abi,
+            ipfsHash,
             signer
             )
         ) 
@@ -47,7 +49,7 @@ const initConnection = async () => {
 
      contractAddress = '0x0d8cc4b8d15D4c3eF1d70af0071376fb26B5669b';
 
-     cnt = new ethers.Contract(contractAddress, ipfsHash.abi, wallet);
+     cnt = new ethers.Contract(contractAddress, ipfsHash, wallet);
     }
 
     
@@ -59,23 +61,18 @@ const initConnection = async () => {
 //---------------------------------------------------------------------------------------------------------------
 
 
-const getStudents = async () => {
-    const transaction = await cnt.getStudents();
-    console.log(transaction);
+const diplomes = async () => {
+    const transaction = await getDiplomes();
     setStudentData(transaction);
+    console.log("this is from BC")
+    console.log(transaction[0])
 }
 
-const addNewStudent = async (_apogee, _name, _email, _diplome) => {
-    const transaction = await cnt.createStudent(_apogee, _name, _email, _diplome);
-    await transaction.wait();
-    console.log(transaction)
-    getStudents()
-}
 
-const deleteLastStudent = async () => {
-    const transaction = await cnt.deleteLastStudent();
+const deletDiplome = async () => {
+    const transaction = await deleteLastDiplome();
     await transaction.wait();
-    getStudents()
+    diplomes()
 }
 
 
@@ -102,13 +99,22 @@ const handleFile = async (e) => {
 
 const saveData = () => {
     for (let i = 0; i < data.length; i++) {
-        addNewStudent(data[i][0].toString(), data[i][1], data[i][2], data[i][3])
+        let student = []
+        for(let j = 0; j < data[i].length; j++){
+            if(typeof data[i][j] === 'string'){
+                student.push(data[i][j])
+            }else{
+                student.push(data[i][j].toString())
+            }
+        }
+
+        creatDiplome(student)
 
         let emailData = {
             apogee : data[i][0],
             name : data[i][1],
-            email : data[i][2],
-            diplome : data[i][3]
+            email : student[2]+'.'+student[3]+'-etu@etu.univh2c.ma',
+            diplome : student[7]+' '+student[8]
         }
 
         axios.post('http://localhost:5000/email', emailData)
@@ -143,7 +149,7 @@ const saveData = () => {
 
         
         <div>
-            <button onClick={() => getStudents()}>Get Data from Smart Contract</button>
+            <button onClick={() => diplomes()}>Get Data from Smart Contract</button>
         </div>
         <br/>
         <div>
@@ -151,7 +157,7 @@ const saveData = () => {
         </div>
         <br/>
         <div>
-            <button onClick={() => deleteLastStudent()}>Delete Last Entry</button>
+            <button onClick={() => deletDiplome()}>Delete Last Entry</button>
         </div>
 
         <br/><br/>
@@ -161,7 +167,7 @@ const saveData = () => {
         <div className="main-column">
             {studentData.map((item) => {
             return (
-                <p key={item.codeApogee}>{item.codeApogee}, {item.studentName}, {item.diplomeTitle} &nbsp;&nbsp;
+                <p key={item[0]}>{item[0]}, {item[1]}, {item[2]},{item[3]}, {item[4]}, {item[5]},{item[6]}, {item[7]}, {item[8]}, {item[0]}, {item[9]}, {item[11]} &nbsp;&nbsp;
                 <a href={`/show/${item.codeApogee}`}><button>See {item.studentName}'s Diploma</button></a></p>)
             })}
         </div>

@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity 0.8.17;
 
 // Uncomment this line to use console.log
@@ -6,41 +6,62 @@ pragma solidity 0.8.17;
 
 contract Storage {
     
-    struct Student{
-        string codeApogee; //0 = to do 1 = busy 2 = done
-        string studentName;
-        string studentEmail;
+    struct Diplome{
+        string CNE;
+        string CNI; //0 = to do 1 = busy 2 = done
+        string firstName;
+        string lastName;
+        string birthDate;
+        string birthPlace;
+
+        string universityName;
         string diplomeTitle;
+        string brancheName;
+        string brancheOption;
+        string note;
+        string date;
+
     }
 
-    Student[] public students;
+    Diplome[] public diplomes;
+    event DiplomeCreated(string _CNE);
 
-    function createStudent(string memory _codeApogee, string memory _studentName, string memory _studentEmail, string memory _diplomeTitle) external {
-        students.push(Student(_codeApogee, _studentName, _studentEmail, _diplomeTitle));
+    function createDiplome(string[] memory _dip) public {
+        require(_dip.length == 12, "Error some parameters missing. Should be at least 11 parameter 12");
+        
+        Diplome memory newDiplome = Diplome({
+            CNE: _dip[0],
+            CNI: _dip[1],
+            firstName: _dip[2],
+            lastName: _dip[3],
+            birthDate: _dip[4],
+            birthPlace: _dip[5],
+
+            universityName: _dip[6],
+            diplomeTitle: _dip[7],
+            brancheName: _dip[8],
+            brancheOption: _dip[9],
+            note: _dip[10],
+            date: _dip[11]
+        });
+        
+        diplomes.push(newDiplome);
+        emit DiplomeCreated(_dip[0]);
     }
 
-    function getStudents() external view returns(Student[] memory) {
-        return students;
+    function getDiplomes() external view returns(Diplome[] memory) {
+        return diplomes;
     }
 
-    function deleteLastStudent() external {
-        students.pop();
+    function deleteLastDiplome() external {
+        diplomes.pop();
     }
 
-    function getStudent(string memory _codeApogee) public view returns (Student memory) {
-        for(uint i = 0; i < students.length; i++){
-            if (keccak256(bytes(students[i].codeApogee)) == keccak256(bytes(_codeApogee))){
-                return students[i];
+    function getDiplome(string memory _CNE ) public view returns (Diplome memory) {
+        for(uint i = 0; i < diplomes.length; i++){
+            if (keccak256(bytes(diplomes[i].CNE)) == keccak256(bytes(_CNE))){
+                return diplomes[i];
             }
         }
     }
-
-    // function getFile(string memory _hash) external view returns(File[] memory) {
-    //     for (uint i = 0; i < files.length; i++) {
-    //         if (keccak256(bytes(files[i].fileHash)) == keccak256(bytes(_hash))) {
-    //             return files[i];
-    //         }
-    //     }
-    // }
-
 }

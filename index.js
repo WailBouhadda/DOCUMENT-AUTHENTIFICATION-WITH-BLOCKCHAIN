@@ -31,19 +31,19 @@ app.post('/email', (req, res) => {
 
     let emailData = req.body
 
-    QRCode.toDataURL(`http://localhost:3000/${emailData.apogee}`).then(url => {
+    QRCode.toDataURL(`http://localhost:3000/show/${emailData.apogee}`).then(url => {
         
         let smtpTransport = nodemailer.createTransport({
             service: 'Gmail',
             port: 456,
             auth: {
-                user: 'elaminemehdi77@gmail.com',
-                pass: 'bzoiivmcnylchagy'
+                user: 'wailbouhadda31@gmail.com',
+                pass: 'djxtsfsrgtafwzox'
             }
         })
 
         let mailOptions = {
-            from: 'elaminemehdi77@gmail.com',
+            from: 'wailbouhadda31@gmail.com',
             to: emailData.email,
             subject: 'Message from FSBM',
             attachDataUrls: true,
