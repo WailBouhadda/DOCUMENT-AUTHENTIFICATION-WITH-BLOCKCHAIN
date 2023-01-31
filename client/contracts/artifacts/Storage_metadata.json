@@ -116,6 +116,87 @@
 				"inputs": [
 					{
 						"internalType": "string",
+						"name": "_date",
+						"type": "string"
+					}
+				],
+				"name": "filterDiplomes",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "CNE",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "CNI",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "firstName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "lastName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "birthDate",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "birthPlace",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "universityName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "diplomeTitle",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "brancheName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "brancheOption",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "note",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "date",
+								"type": "string"
+							}
+						],
+						"internalType": "struct Storage.Diplome[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
 						"name": "_CNE",
 						"type": "string"
 					}
@@ -297,11 +378,11 @@
 	},
 	"sources": {
 		"Storage.sol": {
-			"keccak256": "0x655b71471177de365672c58e3c7bb8f3c566d2f16bbbed16b3d3f0b088f591ac",
+			"keccak256": "0xfa9febeef4a27ee3cd5aa73437a332ff5932c1ff445a987657bbed6e5432ef23",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://12b58676e6f773ec147c69ddd5547562147fee6492bee2d9667393d6a22df437",
-				"dweb:/ipfs/QmdE86AyF1ddP5GYZKAPnyvRqiVUQ1Dc4WJfd9m7z9s5bj"
+				"bzz-raw://db7e4c208bcc3817b4526c839db3989e9a2f8e050c779370e1668b3a63a87095",
+				"dweb:/ipfs/QmZXseqG8tTNNMYgjSXEkjW7gykrpFKp8n3Wj9vp9DyAym"
 			]
 		}
 	},

@@ -19,11 +19,9 @@ function Diplomes({studentData,setStudentData}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(date);
-        const transaction = await filterDiplomes(date)
+        console.log(date, title);
+        const transaction = await filterDiplomes(date ,etbliss, title)
         setStudentData(transaction);
-        console.log("this is from BC")
-        console.log(transaction[0])
     }
 
   return (
@@ -35,6 +33,7 @@ function Diplomes({studentData,setStudentData}) {
                         <label htmlFor="exampleFormControlSelect1" className='col-sm-2 col-form-label'>Date :</label>
                         <div className='col-sm-10'>
                             <select onChange={(e) => setDate(e.target.value)} required class="form-control" id="exampleFormControlSelect1">
+                                <option selected="selected"></option>
                                 <option value="2020">2019</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
@@ -48,6 +47,7 @@ function Diplomes({studentData,setStudentData}) {
                         <label htmlFor="exampleFormControlSelect1" className='col-sm-2 col-form-label'>Diplome :</label>
                         <div className='col-sm-10'>
                             <select onChange={(e) => setTitle(e.target.value)} required class="form-control" id="exampleFormControlSelect1">
+                                <option selected="selected"></option>
                                 <option value="MASTER">Master</option>
                                 <option value="LICENCE">Licence</option>
                                 <option value="DEUG">DEUG</option>
@@ -60,6 +60,7 @@ function Diplomes({studentData,setStudentData}) {
                         <label htmlFor="exampleFormControlSelect1" className='col-sm-2 col-form-label'>Diplome :</label>
                         <div className='col-sm-10'>
                             <select onChange={(e) => setEtabliss(e.target.value)} required class="form-control" id="exampleFormControlSelect1">
+                                <option selected="selected"></option>
                                 <option value="FSBM">FS Ben M'sik</option>
                                 <option value="FSAC">FS Ain Chok</option>
                                 <option value="FSTM">FST Mohemadia</option>

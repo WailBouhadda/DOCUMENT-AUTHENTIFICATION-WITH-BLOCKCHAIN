@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.17;
+pragma solidity ^0.8.17;
 
 // Uncomment this line to use console.log
 // import "hardhat/console.sol";
@@ -53,12 +53,12 @@ contract Storage {
         return diplomes;
     }
 
-    function filterDiplomes(string _date, string _dip, string _filiere) external view returns(Diplome[] memory) {
+    function filterDiplomes(string memory _date ,string memory _univer ,string memory _filiere) external view returns(Diplome[] memory) {
 
         uint256 resultCount;
 
         for (uint i = 0; i < diplomes.length; i++) {
-            if ((keccak256(abi.encodePacked((diplomes[i].date))) == keccak256(abi.encodePacked((_date)))) && (keccak256(abi.encodePacked((diplomes[i].date))) == keccak256(abi.encodePacked((_dip)))) ) {
+            if ((keccak256(bytes((diplomes[i].date))) == keccak256(bytes((_date)))) && (keccak256(bytes((diplomes[i].universityName))) == keccak256(bytes((_univer)))) && (keccak256(bytes((diplomes[i].diplomeTitle))) == keccak256(bytes((_filiere))))){
                 resultCount++; 
             }
         }
@@ -67,7 +67,7 @@ contract Storage {
         uint256 j;
 
         for (uint i = 0; i < diplomes.length; i++) {
-            if (keccak256(abi.encodePacked((diplomes[i].date))) == keccak256(abi.encodePacked((_dip)))) {
+            if ((keccak256(bytes((diplomes[i].date))) == keccak256(bytes((_date)))) && (keccak256(bytes((diplomes[i].universityName))) == keccak256(bytes((_univer)))) && (keccak256(bytes((diplomes[i].diplomeTitle))) == keccak256(bytes((_filiere))))){
                 result[j] = diplomes[i];
                 j++;
             }

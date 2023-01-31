@@ -4,19 +4,8 @@ import * as XLSX from 'xlsx';
 import { ethers } from 'ethers'
 import ipfsHash from '../artifacts/contracts/Storage.sol/Storage.json'
 import axios from 'axios'
-import { creatDiplome, getDiplomes, deleteLastDiplome } from './diplomeService';
+import { init, creatDiplome, getDiplomes, deleteLastDiplome } from './diplomeService';
 import Diplomes from './showDiplomes/Diplomes';
-
-
-
-const provide = new ethers.providers.JsonRpcProvider('http://192.168.0.186:8545');
-
-const privateKey = '0x3e3423ef6c78e6e2e507c340f68d487db1aa41d5f3dcbdd0789e14f84e344b2f';
-let wallet ;
-
-let contractAddress ;
-
-let cnt ;
 
 
 function App() {
@@ -25,37 +14,10 @@ function App() {
     const [contractIPFS, setContractIPFS] = useState()
     const [studentData, setStudentData] = useState([])
 
-const initConnection = async () => {
-    if(typeof window.ethereum !== 'undefined'){
-        const accounts = await window.ethereum.request({ 
-                            method: 'eth_requestAccounts' 
-                        });
-        //console.log(BesuAcc);
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        setAccount(accounts[0]);
-        setContractIPFS(
-            new ethers.Contract(
-            "0x0d8cc4b8d15D4c3eF1d70af0071376fb26B5669b",
-            ipfsHash,
-            signer
-            )
-        ) 
-        } else {
-        console.log("Please install MetaMask");
-        }
-
-
-        wallet = new ethers.Wallet(privateKey, provide);
-
-     contractAddress = '0x0d8cc4b8d15D4c3eF1d70af0071376fb26B5669b';
-
-     cnt = new ethers.Contract(contractAddress, ipfsHash, wallet);
-    }
 
     
     useEffect(() => {
-        initConnection()
+        init();
     }, [])
 
 
