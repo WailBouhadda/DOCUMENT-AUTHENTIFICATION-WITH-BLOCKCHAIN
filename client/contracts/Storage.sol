@@ -53,6 +53,29 @@ contract Storage {
         return diplomes;
     }
 
+    function filterDiplomes(string _dip) external view returns(Diplome[] memory) {
+
+        uint256 resultCount;
+
+        for (uint i = 0; i < diplomes.length; i++) {
+            if (keccak256(abi.encodePacked((diplomes[i].date))) == keccak256(abi.encodePacked((_dip)))) {
+                resultCount++; 
+            }
+        }
+
+        Diplome[] memory result = new Diplome[](resultCount);
+        uint256 j;
+
+        for (uint i = 0; i < diplomes.length; i++) {
+            if (keccak256(abi.encodePacked((diplomes[i].date))) == keccak256(abi.encodePacked((_dip)))) {
+                result[j] = diplomes[i];
+                j++;
+            }
+        }
+
+        return result;
+    }
+
     function deleteLastDiplome() external {
         diplomes.pop();
     }
