@@ -166,22 +166,6 @@ const [update, setUpdate] = useState(false);
             <button onClick={() => deletDiplome()}>Delete Last Entry</button>
         </div>
 
-        <br/><br/>
-        <hr/>
-        <br/><br/>
-        
-        <div className="main-column">
-            {studentData.map((item) => {
-            return (
-                <p key={item[0]}>{item[0]}, {item[1]}, {item[2]},{item[3]}, {item[4]}, {item[5]},{item[6]}, {item[7]}, {item[8]}, {item[0]}, {item[9]}, {item[11]} &nbsp;&nbsp;
-                <a href={`/show/${item.codeApogee}`}><button>See {item.studentName}'s Diploma</button></a></p>)
-            })}
-        </div>
-
-
-
-
-        <br/><br/>
         </div>
     );
 }
