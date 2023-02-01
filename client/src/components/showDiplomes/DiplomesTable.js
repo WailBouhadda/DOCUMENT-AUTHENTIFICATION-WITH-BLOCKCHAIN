@@ -12,13 +12,12 @@ function DiplomesTable({studentData,setStudentData}) {
             <th scope="col">Nom</th>
             <th scope="col">Date De Naissance</th>
             <th scope="col">Lieu De Naissance</th>
-            <th scope="col">Etablissement</th>
             <th scope="col">Diplome</th>
             <th scope="col">Filiere</th>
             <th scope="col">Option</th>
             <th scope="col">Note</th>
             <th scope="col">Date d'ajout</th>
-            <th scope="col">Afficher Diplome</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -36,7 +35,6 @@ function DiplomesTable({studentData,setStudentData}) {
               <td>{item[8]}</td>
               <td>{item[9]}</td>
               <td>{item[10]}</td>
-              <td>{item[11]}</td>
               <td><a href={`/show/${item[0]}`}><button>Afficher</button></a></td>
             </tr>
                   )

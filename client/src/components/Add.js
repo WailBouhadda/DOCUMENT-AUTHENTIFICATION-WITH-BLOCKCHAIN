@@ -52,7 +52,7 @@ const handleFile = async (e) => {
 //---------------------------------------------------------------------
 
 
-const saveData = () => {
+const saveData = async () =>  {
     for (let i = 0; i < data.length; i++) {
         let student = []
         for(let j = 0; j < data[i].length; j++){
@@ -63,7 +63,7 @@ const saveData = () => {
             }
         }
 
-        creatDiplome(student)
+        await creatDiplome(student)
 
         let emailData = {
             apogee : data[i][0],

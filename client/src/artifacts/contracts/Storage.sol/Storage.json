@@ -1,18 +1,5 @@
 [
 	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "_CNE",
-				"type": "string"
-			}
-		],
-		"name": "DiplomeCreated",
-		"type": "event"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "string[]",
@@ -31,6 +18,19 @@
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "_CNE",
+				"type": "string"
+			}
+		],
+		"name": "DiplomeCreated",
+		"type": "event"
 	},
 	{
 		"inputs": [
@@ -74,11 +74,6 @@
 			},
 			{
 				"internalType": "string",
-				"name": "universityName",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
 				"name": "diplomeTitle",
 				"type": "string"
 			},
@@ -111,11 +106,6 @@
 			{
 				"internalType": "string",
 				"name": "_date",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_univer",
 				"type": "string"
 			},
 			{
@@ -156,11 +146,6 @@
 					{
 						"internalType": "string",
 						"name": "birthPlace",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "universityName",
 						"type": "string"
 					},
 					{
@@ -241,11 +226,6 @@
 					},
 					{
 						"internalType": "string",
-						"name": "universityName",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
 						"name": "diplomeTitle",
 						"type": "string"
 					},
@@ -312,11 +292,6 @@
 					{
 						"internalType": "string",
 						"name": "birthPlace",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "universityName",
 						"type": "string"
 					},
 					{

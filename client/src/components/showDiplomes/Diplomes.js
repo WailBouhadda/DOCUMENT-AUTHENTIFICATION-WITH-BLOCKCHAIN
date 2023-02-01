@@ -14,13 +14,12 @@ function Diplomes({studentData,setStudentData}) {
 
     const [date, setDate] = useState('');
     const [title, setTitle] = useState('');
-    const [etbliss, setEtabliss] = useState('');
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(date, title);
-        const transaction = await filterDiplomes(date ,etbliss, title)
+        const transaction = await filterDiplomes(date ,title)
         setStudentData(transaction);
     }
 
@@ -51,19 +50,6 @@ function Diplomes({studentData,setStudentData}) {
                                 <option value="MASTER">Master</option>
                                 <option value="LICENCE">Licence</option>
                                 <option value="DEUG">DEUG</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div className='col'>
-                    <div className='mb-3 row'>
-                        <label htmlFor="exampleFormControlSelect1" className='col-sm-2 col-form-label'>Diplome :</label>
-                        <div className='col-sm-10'>
-                            <select onChange={(e) => setEtabliss(e.target.value)} required class="form-control" id="exampleFormControlSelect1">
-                                <option selected="selected"></option>
-                                <option value="FSBM">FS Ben M'sik</option>
-                                <option value="FSAC">FS Ain Chok</option>
-                                <option value="FSTM">FST Mohemadia</option>
                             </select>
                         </div>
                     </div>

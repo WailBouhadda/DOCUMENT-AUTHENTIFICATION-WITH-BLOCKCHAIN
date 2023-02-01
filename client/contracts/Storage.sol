@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.7;
 
 // Uncomment this line to use console.log
 // import "hardhat/console.sol";
@@ -14,7 +14,6 @@ contract Storage {
         string birthDate;
         string birthPlace;
 
-        string universityName;
         string diplomeTitle;
         string brancheName;
         string brancheOption;
@@ -27,7 +26,6 @@ contract Storage {
     event DiplomeCreated(string _CNE);
 
     function createDiplome(string[] memory _dip) public {
-        require(_dip.length == 12, "Error some parameters missing. Should be at least 11 parameter 12");
         
         Diplome memory newDiplome = Diplome({
             CNE: _dip[0],
@@ -37,12 +35,11 @@ contract Storage {
             birthDate: _dip[4],
             birthPlace: _dip[5],
 
-            universityName: _dip[6],
-            diplomeTitle: _dip[7],
-            brancheName: _dip[8],
-            brancheOption: _dip[9],
-            note: _dip[10],
-            date: _dip[11]
+            diplomeTitle: _dip[6],
+            brancheName: _dip[7],
+            brancheOption: _dip[8],
+            note: _dip[9],
+            date: _dip[10]
         });
         
         diplomes.push(newDiplome);
@@ -53,12 +50,12 @@ contract Storage {
         return diplomes;
     }
 
-    function filterDiplomes(string memory _date ,string memory _univer ,string memory _filiere) external view returns(Diplome[] memory) {
+    function filterDiplomes(string memory _date ,string memory _filiere) external view returns(Diplome[] memory) {
 
         uint256 resultCount;
 
         for (uint i = 0; i < diplomes.length; i++) {
-            if ((keccak256(bytes((diplomes[i].date))) == keccak256(bytes((_date)))) && (keccak256(bytes((diplomes[i].universityName))) == keccak256(bytes((_univer)))) && (keccak256(bytes((diplomes[i].diplomeTitle))) == keccak256(bytes((_filiere))))){
+            if ((keccak256(bytes((diplomes[i].date))) == keccak256(bytes((_date)))) && (keccak256(bytes((diplomes[i].diplomeTitle))) == keccak256(bytes((_filiere))))){
                 resultCount++; 
             }
         }
@@ -67,7 +64,7 @@ contract Storage {
         uint256 j;
 
         for (uint i = 0; i < diplomes.length; i++) {
-            if ((keccak256(bytes((diplomes[i].date))) == keccak256(bytes((_date)))) && (keccak256(bytes((diplomes[i].universityName))) == keccak256(bytes((_univer)))) && (keccak256(bytes((diplomes[i].diplomeTitle))) == keccak256(bytes((_filiere))))){
+            if ((keccak256(bytes((diplomes[i].date))) == keccak256(bytes((_date)))) && (keccak256(bytes((diplomes[i].diplomeTitle))) == keccak256(bytes((_filiere))))){
                 result[j] = diplomes[i];
                 j++;
             }
