@@ -34,6 +34,7 @@ function Update() {
     console.log(transaction);
   };
 
+  // one
   const updateElem = async () => {
     let diplome = [];
     for (let j = 0; j < data[0].length; j++) {
@@ -41,19 +42,21 @@ function Update() {
     }
     await update1(apogee, diplome);
 
-    let eml = diplome[1].toLowerCase().split(" ");
-    eml = eml.join(".");
-
+    // let eml = diplome[1].toLowerCase().split(" ");
+    // eml = eml.join(".");
+    // Update : cne fullName cni email birthDay placedate mention univ degree filiere  date
     let emailData = {
       CNE: diplome[0],
       name: diplome[1],
-      email: eml + "-etu@etu.univh2c.ma",
-      diplome: diplome[7],
+      // email: eml + "-etu@etu.univh2c.ma",
+      email : diplome[3],
+      diplome: diplome[8],
     };
 
     axios.post("http://localhost:5000/email", emailData);
   };
 
+  // many
   const updateAll = async () => {
     for (let i = 0; i < data.length; i++) {
       let diplome = [];
@@ -64,14 +67,15 @@ function Update() {
 
       await update2(diplome);
 
-      let eml = diplome[1].toLowerCase().split(" ");
-      eml = eml.join(".");
-
+      // let eml = diplome[1].toLowerCase().split(" ");
+      // eml = eml.join(".");
+      //Updates : Cne fullName cni email birthDate placeDate mention faculty degree filière date
       let emailData = {
         CNE: diplome[0],
         name: diplome[1],
-        email: eml + "-etu@etu.univh2c.ma",
-        diplome: diplome[7],
+        email: diplome[3],
+        
+        diplome: diplome[9] // filiere
       };
 
       axios.post("http://localhost:5000/email", emailData);
@@ -123,7 +127,7 @@ function Update() {
         <input type="file" onInput={(e) => handleFile(e)} /> */}
         <div className="w-full flex justify-center gap-6 items-center p-4 m-4">
           {/* <input type="file" onInput={(e) => handleFile(e)} /> */}
-          <Input type="file" accept=".csv" onInput={(e) => handleFile(e)} />
+          <Input type="file"  onInput={(e) => handleFile(e)} />
           {/* <button onClick={() => saveData()}>Save Data</button>&nbsp;&nbsp; */}
           <Button
             variant="contained"
@@ -148,7 +152,7 @@ function Update() {
         {/* yyyyyyyyyyyyyyyyy */}
         <div className="w-full flex justify-center gap-6 items-center p-4 mt-[95px]">
           {/* <input type="file" onInput={(e) => handleFile(e)} /> */}
-          <Input type="file" accept=".csv" onInput={(e) => handleFile(e)} />
+          <Input type="file"  onInput={(e) => handleFile(e)} />
           {/* <button onClick={() => saveData()}>Save Data</button>&nbsp;&nbsp; */}
           <Button
             variant="contained"

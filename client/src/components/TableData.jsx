@@ -20,34 +20,34 @@ import TableRow from "@mui/material/TableRow";
 
 const columns = [
   { id: "CNE", label: "CNE", minWidth: 170 },
-  { id: "First Name & Last Name", label: "ISO\u00a0Code", minWidth: 100 },
+  { id: "Full Name", label: "Full Name", minWidth: 100 },
   {
-    id: "CNI",
-    label: "CNI",
+    id: "Email",
+    label: "Email",
     minWidth: 170,
     align: "center",
     format: (value) => value.toLocaleString("en-US"),
   },
   {
-    id: "Date Of Birth",
-    label: "Date Of Birth",
+    id: "University",
+    label: "University",
     minWidth: 170,
     align: "center",
     format: (value) => value.toLocaleString("en-US"),
   },
   {
-    id: "place of birth",
-    label: "place of birth",
+    id: "Degree",
+    label: "Degree",
     minWidth: 170,
     align: "center",
     format: (value) => value.toLocaleString("en-US"),
   },
   {
-    id: "Mention",
-    label: "Mention",
+    id: "Branch",
+    label: "Branch",
     minWidth: 170,
     align: "center",
-    format: (value) => value.toFixed(2),
+    format: (value) => value.toLocaleString("en-US"),
   },
 ];
 
@@ -74,8 +74,8 @@ const columns = [
 //   createData('Brazil', 'BR', 210147125, 8515767),
 // ];
 
-export default function TableData({ data }) {
-  const [page, setPage] = React.useState(0);
+export default function TableData({ data, faculty, filiere }) {
+  const [page, setPage] = React.useState(10);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const handleChangePage = (event, newPage) => {
@@ -123,16 +123,17 @@ export default function TableData({ data }) {
                   </TableRow>
                 );
               })} */}
-
+{/* //(_apogee, _cne, _name, _prenom, _email,_birthDate, _birthPlace, _univ,  _niveau, _filiere, _mention, _date ) */}
+{/* // toBlockchain : cne fullname email cni birthDay placeDate mention faculty degree filier date */}
             {data.map((item) => {
               return (
                 <TableRow key={item[0]}>
                   <TableCell align="center">{item[0]}</TableCell>
                   <TableCell align="center">{item[1]}</TableCell>
-                  <TableCell align="center">{item[2]}</TableCell>
                   <TableCell align="center">{item[3]}</TableCell>
-                  <TableCell align="center">{item[4]}</TableCell>
-                  <TableCell align="center">{item[5]}</TableCell>
+                  <TableCell align="center">{faculty}</TableCell>
+                  <TableCell align="center">{filiere}</TableCell>
+                  <TableCell align="center">{item[6]}</TableCell>
                 </TableRow>
               );
             })}

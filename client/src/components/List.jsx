@@ -323,7 +323,8 @@ function List() {
         </div>
       </section>
       {/* table */}
-          <TableData data={data}/>
+      {data.length > 0 ? <TableData data={data} faculty={faculty} filiere={filiere}/> : ""}
+
       {/*  */}
       {/* <div className="m-3">
         <table className="table table-striped">

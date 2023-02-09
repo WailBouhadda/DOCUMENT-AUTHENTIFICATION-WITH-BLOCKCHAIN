@@ -17,6 +17,7 @@ import TableData from "./TableData";
 import NavBar from "../Navbar/Navbar";
 
 function App() {
+  const [load, setLoad] = useState(false);
   useEffect(() => {
     init();
   }, []);
@@ -39,7 +40,7 @@ function App() {
 
   //---------------------------------------------------------------------
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([{}]);
 
   const handleFile = async (e) => {
     console.log("reading input file:");
@@ -51,7 +52,7 @@ function App() {
       header: 1,
       defval: "",
     });
-    console.log(jsonData);
+    console.log({ jsonData });
     setData(jsonData);
   };
 
@@ -63,11 +64,16 @@ function App() {
   const [faculty, setFaculty] = useState("");
 
   const saveData = async () => {
-    console.log(date);
+    console.log({ data });
     for (let i = 0; i < data.length; i++) {
       //(_apogee, _name, _email, _cne, _niveau, _filiere, _date, _mention, _birthDate, _birthPlace)
+      // new format of csv file
+      // Diplôme  : cne fullname email cni birthDay placeDate mention
+      // data : faculty degree filier date
+      // toBlockchain : cne fullname email cni birthDay placeDate mention faculty degree filier date
       let diplome = [];
       for (let j = 0; j < data[i].length; j++) {
+        console.log(data[i][j]);
         diplome.push(data[i][j].toString());
       }
       diplome.push(faculty.toString());
@@ -75,16 +81,22 @@ function App() {
       diplome.push(filiere.toString());
       diplome.push(date.toString());
 
-      let eml = diplome[1].toLowerCase().split(" ");
-      eml = eml.join(".");
-
+      // see diploma format
+      // diplome.map((d)=>{
+      //   console.log(d.toString());
+      // })
+      // let eml = diplome[1].toLowerCase().split(" ");
+      // eml = eml.join(".");
+      // setData(diplome);
       await addNewStudent(diplome);
 
       let emailData = {
         CNE: diplome[0],
         name: diplome[1],
-        email: eml + "-etu@etu.univh2c.ma",
-        diplome: data[i][7],
+        // email: eml + "-etu@etu.univh2c.ma",
+        email: diplome[4],
+        // diplome: data[i][9], //filiere
+        diplome: data[i][8],
       };
 
       axios.post("http://localhost:5000/email", emailData);
@@ -225,8 +237,14 @@ function App() {
 
         <div className="w-full flex justify-center gap-6 items-center p-4 m-4">
           {/* <input type="file" onInput={(e) => handleFile(e)} /> */}
-          <Input type="file" accept=".csv" onInput={(e) => handleFile(e)} />
-        
+          <Input
+            type="file"
+            required={true}
+            onInput={(e) => {
+              handleFile(e);
+            }}
+          />
+
           {/* <button onClick={() => saveData()}>Save Data</button>&nbsp;&nbsp; */}
           <Button
             variant="contained"
@@ -238,8 +256,8 @@ function App() {
         </div>
       </section>
       {/* table */}
-          <TableData data={data}/>
-      {/*  */}
+      {data.length > 1 ? <TableData data={data} faculty={faculty} filiere={filiere}/> : ""}
+
       {/* <div className="m-3">
         <table className="table table-striped">
           <thead>

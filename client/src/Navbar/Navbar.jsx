@@ -34,11 +34,11 @@ function NavBar() {
             <div className="flex space-x-4 text-gray-900">
               <Link to={"/list"}>
                 <div className='no-underline'>
-                    <a className='p-1 text-cyan-400 font-medium hover:text-cyan-200 !no-underline'>Show Diplomes</a>
+                    <div className='p-1 text-cyan-400 font-medium hover:text-cyan-200 no-underline'>Show Diplomes</div>
                 </div>
                 </Link>
-              <Link to={"/update"}><a className='p-1 text-cyan-400 font-medium hover:text-cyan-200 !no-underline'>Update Diplome</a></Link>
-              <Link to={"/Add"}><a styleclassName='p-1 text-cyan-400 font-medium hover:text-cyan-200 !no-underline'>Add Diplomes</a></Link>
+              <Link to={"/update"}><div className='p-1 text-cyan-400 font-medium hover:text-cyan-200 no-underline'>Update Diplome</div></Link>
+              <Link to={"/Add"}><div className='p-1 text-cyan-400 font-medium hover:text-cyan-200 no-underline'>Add Diplomes</div></Link>
             </div>
           </div>
         </div>
