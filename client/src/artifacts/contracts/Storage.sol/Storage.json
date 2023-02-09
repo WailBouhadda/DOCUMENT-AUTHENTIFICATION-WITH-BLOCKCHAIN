@@ -87,6 +87,11 @@
 			},
 			{
 				"internalType": "string",
+				"name": "Email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
 				"name": "faculty",
 				"type": "string"
 			},
@@ -113,12 +118,103 @@
 		"inputs": [
 			{
 				"internalType": "string",
+				"name": "_date",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_dip",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_etab",
+				"type": "string"
+			}
+		],
+		"name": "filterDiplomes",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "CNE",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "Name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "CNI",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "birthDate",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "birthPlace",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "Mention",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "Email",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "faculty",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "Diplome",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "Filiere",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "Date",
+						"type": "string"
+					}
+				],
+				"internalType": "struct Storage.Diplome[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
 				"name": "_CNE",
 				"type": "string"
 			},
 			{
 				"internalType": "string",
 				"name": "_dip",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_date",
 				"type": "string"
 			}
 		],
@@ -154,6 +250,11 @@
 					{
 						"internalType": "string",
 						"name": "Mention",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "Email",
 						"type": "string"
 					},
 					{
@@ -219,6 +320,11 @@
 					{
 						"internalType": "string",
 						"name": "Mention",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "Email",
 						"type": "string"
 					},
 					{

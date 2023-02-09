@@ -94,11 +94,12 @@ function App() {
         CNE: diplome[0],
         name: diplome[1],
         // email: eml + "-etu@etu.univh2c.ma",
-        email: diplome[4],
+        email: diplome[2],
         // diplome: data[i][9], //filiere
-        diplome: data[i][8],
+        diplome: diplome[8],
+        filiere: diplome[9],
+        date: diplome[10]
       };
-
       axios.post("http://localhost:5000/email", emailData);
     }
   };

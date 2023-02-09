@@ -31,27 +31,32 @@ app.post('/email', (req, res) => {
 
     let emailData = req.body
 
-    QRCode.toDataURL(`http://localhost:3000/show/${emailData.CNE+'.'+emailData.diplome}`).then(url => {
+    QRCode.toDataURL(`http://161.35.200.201/Diplome/${emailData.CNE+'.'+emailData.diplome+'.'+emailData.date}`).then(url => {
         
         let smtpTransport = nodemailer.createTransport({
             service: 'Gmail',
             port: 456,
             auth: {
-                user: 'wailbouhadda31@gmail.com',
-                pass: 'djxtsfsrgtafwzox'
+                user: 'univh2.casablanca1@gmail.com',
+                pass: 'czjsscgvpjsgfofk'
             }
         })
 
         let mailOptions = {
-            from: 'wailbouhadda31@gmail.com',
+            from: 'univh2.casablanca1@gmail.com',
             to: emailData.email,
-            subject: 'Message from FSBM',
+            subject: 'QR Code de Diplome (univh2c) ',
             attachDataUrls: true,
             html: `
             
-                <h3>Bonjour Mr. ${emailData.name},</h3>
-                <h3> Voici le code qr de votre diplome "${emailData.diplome}" : </h3>
-                <img src='${url}'/>
+                <h3>Bonjour mr. ${emailData.name},</h3>
+                <h3> Veuillez trouver ci joint le code Qr de votre diplome "${emailData.diplome}", "${emailData.filiere}" : </h3>
+
+                <img style:"marin-auto" src='${url}'/>
+
+                <h3 style="color:red;font-weight:bold"> IMPORTANT !</h3>
+                <h4 style="font-style:italic">*Scanner ce code Qr et verifier vos informations sur le diplome.</h4>
+                <h4 style="font-style:italic">*Toute réclamation doit être adressée au service de scolarité de votre établissement.</h4>
     
             `
         }

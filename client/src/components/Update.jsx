@@ -49,10 +49,12 @@ function Update() {
       CNE: diplome[0],
       name: diplome[1],
       // email: eml + "-etu@etu.univh2c.ma",
-      email : diplome[3],
+      email: diplome[2],
+      // diplome: data[i][9], //filiere
       diplome: diplome[8],
+      filiere: diplome[9],
+      date: diplome[10]
     };
-
     axios.post("http://localhost:5000/email", emailData);
   };
 

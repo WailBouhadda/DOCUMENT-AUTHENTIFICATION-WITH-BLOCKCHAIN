@@ -5,7 +5,7 @@ const ethers = require('ethers');
 
 
 
-const provide = new ethers.providers.JsonRpcProvider('http://192.168.112.72:8546');
+const provide = new ethers.providers.JsonRpcProvider('http://192.168.0.186:8546');
 
 const privateKey = '0x3e3423ef6c78e6e2e507c340f68d487db1aa41d5f3dcbdd0789e14f84e344b2f';
 let wallet ;
@@ -17,7 +17,7 @@ let isInitialzed = false;
 
 export const init = async () => {
 
-    const contractAdrees = "0x42699A7612A82f1d9C36148af9C77354759b210b";
+    const contractAdrees = "0x345cA3e014Aaf5dcA488057592ee47305D9B3e10";
     
      wallet = new ethers.Wallet(privateKey, provide);
      cnt = new ethers.Contract(contractAdrees, contractAbi, wallet);
