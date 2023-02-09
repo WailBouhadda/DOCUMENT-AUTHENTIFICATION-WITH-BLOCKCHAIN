@@ -1,15 +1,22 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Add from "./components/Add";
-import Show from "./components/Show";
-import './css/bootstrap.min.css'
+import List from "./components/List";
+import Update from "./components/Update";
+import Main from "./Main";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Add />}/>
-        <Route path="/show/:id" element={<Show />} />
-      </Routes>
+      <div className="max-w-[1650px] m-auto overflow-hidden">
+     
+        <Routes>
+            <Route path="/" element={<Main />}/>
+            <Route path="/add" element={<Add />}/>
+            <Route path="/list" element={<List />} />
+            <Route path="/update" element={<Update />} />
+          
+        </Routes>
+      </div>
     </BrowserRouter>
-  );
+  ) 
 }

@@ -1,19 +1,64 @@
-.div1{
-    color: #285694;
-    width:800px; 
-    height:605px; 
-    padding:20px; 
-    margin: auto; 
-    border: 10px solid #787878;
+.diplome{
+    
+    width: 1650px; 
+    height: 775px; 
+    background-image: url("diplome.png"); 
+    background-repeat: no-repeat;
+    margin: auto;
+    background-size: contain;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    
 }
-.div2{
-    width:750px; 
-    height:550px; 
-    padding:20px; 
-    text-align:center; 
-    border: 5px solid #787878;
-}
+
 .img{
-    height: 80px; 
-    margin-bottom: 20px;
+    height: 100px;
+    width:fit-content;
+    margin-top: 110px;
+}
+
+.diplome .filiere{
+    font-family: 'Abril Fatface', cursive;
+    font-size: 23px;
+    color: #834108cf;
+    text-transform: uppercase;
+    margin-top: 22px;
+}
+
+.diplome .name{
+    font-family: 'Abril Fatface', cursive;
+    font-family: 'Arizonia', cursive;
+    font-size: 80px;
+    margin-top: 45px;
+}
+.diplome .date{
+
+    width: 1335px;
+    display: flex;
+    justify-content: end;
+    color: #e1e1e1cf;
+}
+.diplome .date .dspan{
+    
+    font-size: 25px;
+    font-weight: 800;
+}
+.diplome .dipname{
+    font-weight: 700;
+    font-size: larger;
+    margin-top: 30px;
+}
+.diplome .univer{
+
+    font-weight: 700;
+    font-size: larger;
+    margin-top: 30px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 420px;
 }

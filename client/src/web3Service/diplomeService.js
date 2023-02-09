@@ -5,11 +5,10 @@ const ethers = require('ethers');
 
 
 
-const provide = new ethers.providers.JsonRpcProvider('http://192.168.0.186:8545');
+const provide = new ethers.providers.JsonRpcProvider('http://192.168.112.72:8546');
 
 const privateKey = '0x3e3423ef6c78e6e2e507c340f68d487db1aa41d5f3dcbdd0789e14f84e344b2f';
 let wallet ;
-let contractAddress ;
 let cnt ;
 let isInitialzed = false;
 
@@ -18,7 +17,7 @@ let isInitialzed = false;
 
 export const init = async () => {
 
-    const contractAdrees = "0xd54b47F8e6A1b97F3A84f63c867286272b273b7C";
+    const contractAdrees = "0x42699A7612A82f1d9C36148af9C77354759b210b";
     
      wallet = new ethers.Wallet(privateKey, provide);
      cnt = new ethers.Contract(contractAdrees, contractAbi, wallet);
@@ -48,12 +47,31 @@ export const getDiplomes = async () => {
       return transaction
 }
 
-export const filterDiplomes = async (date ,title) => {
+export const getDiplome = async (cne, diplome) => {
 
     if(!isInitialzed){
         await init();
       }
-      const transaction = await cnt.filterDiplomes(date ,title);
+      const transaction = await cnt.getDiplome(cne, diplome);
+      return transaction
+}
+
+export const updateDiplome = async (cne, diplome) => {
+
+    if(!isInitialzed){
+        await init();
+      }
+      const transaction = await cnt.updateDiplome(cne, diplome);
+      return transaction
+}
+
+export const updateDiplomes = async (diplome) => {
+
+    if(!isInitialzed){
+        await init();
+      }
+      const transaction = await cnt.updateDiplomes(diplome)
+      await transaction.wait()
       return transaction
 }
 

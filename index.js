@@ -21,7 +21,7 @@ app.get('/email', (req, res) => {
         res.send(`
         <h2>QRCode Generated</h2>
         <div><img src='${url}'/></div>
-      `)
+    `)
     }).catch(err => {
         console.debug(err)
     })
@@ -31,7 +31,7 @@ app.post('/email', (req, res) => {
 
     let emailData = req.body
 
-    QRCode.toDataURL(`http://localhost:3000/show/${emailData.apogee}`).then(url => {
+    QRCode.toDataURL(`http://localhost:3000/show/${emailData.CNE+'.'+emailData.diplome}`).then(url => {
         
         let smtpTransport = nodemailer.createTransport({
             service: 'Gmail',
@@ -49,7 +49,8 @@ app.post('/email', (req, res) => {
             attachDataUrls: true,
             html: `
             
-                <h3>Message to ${emailData.name}: Voici le code qr de votre diplome "${emailData.diplome}"</h3>
+                <h3>Bonjour Mr. ${emailData.name},</h3>
+                <h3> Voici le code qr de votre diplome "${emailData.diplome}" : </h3>
                 <img src='${url}'/>
     
             `
