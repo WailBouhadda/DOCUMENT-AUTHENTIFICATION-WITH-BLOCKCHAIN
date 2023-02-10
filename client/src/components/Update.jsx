@@ -11,6 +11,8 @@ import {
 import { Input, TextField } from "@mui/material";
 import { Button } from "@mui/material";
 import NavBar from "../Navbar/Navbar";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Update() {
   const [contract, setContract] = useState();
@@ -21,6 +23,8 @@ function Update() {
   }, []);
 
   const [apogee, setApogee] = useState("");
+  const [showToaster, setShowToaster] = useState(false);
+  let number  = 0 
 
   const update1 = async (cne, diplome) => {
     const transaction = await updateDiplome(cne, diplome);
@@ -56,6 +60,14 @@ function Update() {
       date: diplome[10]
     };
     axios.post("http://localhost:5000/email", emailData);
+    number += 1
+    axios.post("http://localhost:5000/email", emailData);
+    setShowToaster(true);
+    toast.success('Diplomes have been updated : '+ number , {
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 3000,
+      onClose: () => setShowToaster(false),
+    });
   };
 
   // many
@@ -81,6 +93,16 @@ function Update() {
       };
 
       axios.post("http://localhost:5000/email", emailData);
+
+      number += 1
+      axios.post("http://localhost:5000/email", emailData);
+      setShowToaster(true);
+      toast.success('Diplomes have been updated : '+ number , {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 3000,
+        onClose: () => setShowToaster(false),
+      });
+    
     }
   };
 
@@ -166,6 +188,7 @@ function Update() {
         </div>
       </div>
       </section>
+      <ToastContainer />
     </div>
   );
 }

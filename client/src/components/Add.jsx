@@ -15,6 +15,8 @@ import Select from "@mui/material/Select";
 import { Button } from "@mui/material";
 import TableData from "./TableData";
 import NavBar from "../Navbar/Navbar";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [load, setLoad] = useState(false);
@@ -35,7 +37,7 @@ function App() {
   const addNewStudent = async (diplome) => {
     const transaction = await creatDiplome(diplome);
     await transaction.wait();
-    console.log(transaction);
+    return transaction;
   };
 
   //---------------------------------------------------------------------
@@ -62,6 +64,8 @@ function App() {
   const [filiere, setFiliere] = useState("");
   const [date, setDate] = useState("");
   const [faculty, setFaculty] = useState("");
+  const [showToaster, setShowToaster] = useState(false);
+  let number  = 0 
 
   const saveData = async () => {
     console.log({ data });
@@ -88,7 +92,8 @@ function App() {
       // let eml = diplome[1].toLowerCase().split(" ");
       // eml = eml.join(".");
       // setData(diplome);
-      await addNewStudent(diplome);
+      const trans = await addNewStudent(diplome);
+      console.log(trans)
 
       let emailData = {
         CNE: diplome[0],
@@ -100,7 +105,17 @@ function App() {
         filiere: diplome[9],
         date: diplome[10]
       };
+      number += 1
       axios.post("http://localhost:5000/email", emailData);
+      setShowToaster(true);
+      toast.success('Diplomes have been added : '+ number , {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 3000,
+        onClose: () => setShowToaster(false),
+      });
+      if(number === data.length){
+        setData([])
+      }
     }
   };
 
@@ -257,7 +272,7 @@ function App() {
         </div>
       </section>
       {/* table */}
-      {data.length > 1 ? <TableData data={data} faculty={faculty} filiere={filiere}/> : ""}
+      {data.length > 0 ? <TableData data={data} faculty={faculty} filiere={filiere}/> : ""}
 
       {/* <div className="m-3">
         <table className="table table-striped">
@@ -287,6 +302,7 @@ function App() {
           </tbody>
         </table>
       </div> */}
+      <ToastContainer />
     </div>
   );
 }
