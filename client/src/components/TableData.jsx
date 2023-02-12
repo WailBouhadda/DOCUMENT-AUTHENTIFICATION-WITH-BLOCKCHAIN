@@ -130,7 +130,7 @@ export default function TableData({ data, faculty, filiere }) {
                 <TableRow key={item[0]}>
                   <TableCell align="center">{item[0]}</TableCell>
                   <TableCell align="center">{item[1]}</TableCell>
-                  <TableCell align="center">{item[3]}</TableCell>
+                  <TableCell align="center">{item[2]}</TableCell>
                   <TableCell align="center">{faculty}</TableCell>
                   <TableCell align="center">{filiere}</TableCell>
                   <TableCell align="center">{item[6]}</TableCell>

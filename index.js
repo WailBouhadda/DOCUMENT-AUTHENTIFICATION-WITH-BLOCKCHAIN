@@ -50,11 +50,17 @@ app.post('/email', (req, res) => {
             html: `
             
                 <h3>Bonjour mr. ${emailData.name},</h3>
-                <h3> Veuillez trouver ci joint le code Qr de votre diplome "${emailData.diplome}", "${emailData.filiere}" : </h3>
+                <h3> Veuillez trouver ci joint le code Qr et l'url de votre diplome "${emailData.diplome}", "${emailData.filiere}" : </h3>
+
+                <h4 style="font-style:italic">>>Qr code: </h4>
 
                 <img style:"marin-auto" src='${url}'/>
 
-                <h3 style="color:red;font-weight:bold"> IMPORTANT !</h3>
+                <h4 style="font-style:italic">>>URL: </h4>
+
+                <h3>http://161.35.200.201/Diplome/${emailData.CNE+'.'+emailData.diplome+'.'+emailData.date}</h3>
+
+                <h3 style="color:red;font-weight:bold">>IMPORTANT !</h3>
                 <h4 style="font-style:italic">*Scanner ce code Qr et verifier vos informations sur le diplome.</h4>
                 <h4 style="font-style:italic">*Toute réclamation doit être adressée au service de scolarité de votre établissement.</h4>
     
